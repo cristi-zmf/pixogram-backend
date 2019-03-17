@@ -26,7 +26,7 @@ public class UserImagePathProviderLocalIT {
 
     @Test
     public void generatePathForNewFile() {
-        EmailAddress username = new EmailAddress("uploadtest@test.com");
+        EmailAddress username = new EmailAddress("test@test.com");
         String pathForNewFile = sut.generatePathForNewFile("test.jpeg", username);
         File userFolder = new File(storage + "/" + username.getValue());
         assertThat(userFolder).exists();
