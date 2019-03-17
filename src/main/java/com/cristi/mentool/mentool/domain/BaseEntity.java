@@ -1,6 +1,5 @@
 package com.cristi.mentool.mentool.domain;
 
-import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Transient;
 
