@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 @Service
@@ -40,8 +42,12 @@ public class ImageService {
     public UniqueId uploadImageInternally(File imageFile, EmailAddress username) throws IOException {
         String filePath = pathProvider.generatePathForNewFile(imageFile.getName(), username);
         File newImage = new File(filePath);
+        FileInputStream initialFileStream = new FileInputStream(imageFile);
+        byte[] imageBytes = new byte[initialFileStream.available()];
+        initialFileStream.read(imageBytes);
         newImage.createNewFile();
-        newImage.exists();
+        FileOutputStream outputStream = new FileOutputStream(newImage);
+        outputStream.write(imageBytes);
         String thumbnailPath = thumbnailGenerator.generateThumbnail(newImage);
         UserImage userImage = new UserImage(filePath, thumbnailPath, username);
         return userImages.add(userImage).getId();
