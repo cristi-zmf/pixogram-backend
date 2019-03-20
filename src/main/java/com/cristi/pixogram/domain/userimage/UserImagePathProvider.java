@@ -16,9 +16,9 @@ public class UserImagePathProvider {
         String timestamp = getUploadedFileTimestamp();
         int indexOfLastDot = originalFilename.lastIndexOf(".");
         String normalizedFilename = normalizeFileName(originalFilename, timestamp, indexOfLastDot);
-        String userStorageFolder = storage + '/' + username.getValue();
-        File userFolder = new File(userStorageFolder);
-        tryToCreateUserFolder(username, userFolder);
+        String userStorageFolder = storage + '/' + username.getValue().replace("@", ".");
+        File userFolder = new File(new File(userStorageFolder).getAbsolutePath());
+        tryToCreateUserFolder(userFolder);
         return userStorageFolder + '/' + normalizedFilename;
     }
 
@@ -31,10 +31,10 @@ public class UserImagePathProvider {
         return uniqueId.toString().replace(":", "-");
     }
 
-    private void tryToCreateUserFolder(EmailAddress username, File userFolder) {
+    private void tryToCreateUserFolder(File userFolder) {
         if (!userFolder.exists()) {
-            if (!userFolder.mkdir()) {
-                throw new IllegalStateException("Could not create user folder for user " + username);
+            if (!userFolder.mkdirs()) {
+                throw new IllegalStateException("Could not create  folder: " + userFolder);
             }
         }
     }

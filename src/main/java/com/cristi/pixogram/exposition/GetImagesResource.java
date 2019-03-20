@@ -33,10 +33,19 @@ public class GetImagesResource {
         return imageIds;
     }
 
-    @GetMapping("/images/thumbnails/{imageId}")
+    @GetMapping("/thumbnails/{imageId}")
     public ResponseEntity<InputStreamResource> getImageThumbnail(@PathVariable String imageId) throws FileNotFoundException {
         UserImage image = userImages.getOrThrow(new UniqueId(imageId));
         File imageFile = new File(image.getImageThumbnailPath());
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(new InputStreamResource(new FileInputStream(imageFile)));
+    }
+
+    @GetMapping("/full-image/{imageId}")
+    public ResponseEntity<InputStreamResource> getFullImage(@PathVariable String imageId) throws FileNotFoundException {
+        UserImage image = userImages.getOrThrow(new UniqueId(imageId));
+        File imageFile = new File(image.getImagePath());
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_JPEG)
                 .body(new InputStreamResource(new FileInputStream(imageFile)));
