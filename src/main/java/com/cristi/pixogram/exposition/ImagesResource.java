@@ -47,7 +47,7 @@ public class ImagesResource {
                 .body(new InputStreamResource(new FileInputStream(imageFile)));
     }
 
-    @GetMapping("/full-image/{imageId}")
+    @GetMapping("/full-images/{imageId}")
     public ResponseEntity<InputStreamResource> getFullImage(@PathVariable String imageId) throws FileNotFoundException {
         UserImage image = userImages.getOrThrow(new UniqueId(imageId));
         File imageFile = new File(image.getImagePath());
