@@ -31,7 +31,7 @@ public class ImagesResource {
     }
 
     @GetMapping("/{username}/images/id-titles")
-    public Set<ImageIdTitleDto> getImagesIds(@PathVariable String username) {
+    public Set<ImageIdTitleDto> getImagesIdTitles(@PathVariable String username) {
         Set<ImageIdTitleDto> imageIdTitles = userImages.findAllByUsername(new EmailAddress(username)).stream()
                 .map(i -> new ImageIdTitleDto(i.getId(), i.getImageTitle()))
                 .collect(toSet());
