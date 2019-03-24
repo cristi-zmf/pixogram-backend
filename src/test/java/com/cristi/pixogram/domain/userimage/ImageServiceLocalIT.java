@@ -1,6 +1,7 @@
 package com.cristi.pixogram.domain.userimage;
 
 import com.cristi.pixogram.domain.EmailAddress;
+import com.cristi.pixogram.exposition.UploadImageDetailsDto;
 import com.cristi.pixogram.infra.persistence.IntegrationTestWithNoDataset;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ImageServiceLocalIT extends IntegrationTestWithNoDataset {
     @Autowired
@@ -26,10 +27,15 @@ public class ImageServiceLocalIT extends IntegrationTestWithNoDataset {
     public void uploadImage() throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
         File img = new File(classLoader.getResource("static/test_upload.jpg").getFile());
-        MultipartFile multipartFile = new MockMultipartFile(img.getName(), img.getName(), "multipart/mixed", Files.readAllBytes(img.toPath()));
+        MultipartFile multipartFile = new MockMultipartFile(
+                img.getName(), img.getName(), "multipart/mixed", Files.readAllBytes(img.toPath())
+        );
         EmailAddress someUsername = new EmailAddress("test@test.com");
+        UploadImageDetailsDto imageDetails = new UploadImageDetailsDto(
+                someUsername, "Cool image", "Cool description"
+        );
         assertThat(userImages.findAllByUsername(someUsername)).isEmpty();
-        sut.uploadImage(new UploadImageCommand(someUsername, multipartFile));
+        sut.uploadImage(new UploadImageCommand(multipartFile, imageDetails));
         UserImage savedImage = verifyImageWasSavedInUserImageRepo(someUsername);
         File userFolder = verifyImagesWereUploadedInUserFolder(savedImage);
         deleteTestFolderAndFiles(userFolder);

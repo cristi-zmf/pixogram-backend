@@ -3,8 +3,6 @@ package com.cristi.pixogram.infra.dataset;
 import com.cristi.pixogram.domain.EmailAddress;
 import com.cristi.pixogram.domain.userimage.DeleteAllFilesInImageRepo;
 import com.cristi.pixogram.domain.userimage.ImageService;
-import com.cristi.pixogram.domain.userimage.UserImages;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -32,6 +30,6 @@ public class DatasetRunner implements ApplicationRunner {
         ClassLoader classLoader = getClass().getClassLoader();
         File img = new File(classLoader.getResource("static/test_upload.jpg").getFile());
         EmailAddress someUsername = new EmailAddress("john@john.com");
-        imageService.uploadImageInternally(img, someUsername);
+        imageService.uploadImageInternally(img, someUsername, "Cool image", "Cool description");
     }
 }

@@ -2,10 +2,7 @@ package com.cristi.pixogram.exposition;
 
 import com.cristi.pixogram.domain.EmailAddress;
 import com.cristi.pixogram.domain.UniqueId;
-import com.cristi.pixogram.domain.userimage.ImageService;
-import com.cristi.pixogram.domain.userimage.UploadImageCommand;
-import com.cristi.pixogram.domain.userimage.UserImage;
-import com.cristi.pixogram.domain.userimage.UserImages;
+import com.cristi.pixogram.domain.userimage.*;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Set;
 
 import static java.util.stream.Collectors.toSet;
@@ -58,9 +54,10 @@ public class ImagesResource {
 
     @PostMapping(value = "/full-images", consumes="multipart/form-data")
     public ResponseEntity<UniqueId> getFullImage(
-            @RequestPart("multipartFile") MultipartFile multipartFile, @RequestPart("username") String username
-    ) throws IOException {
-        UploadImageCommand command = new UploadImageCommand(new EmailAddress(username), multipartFile);
+            @RequestPart("multipartFile") MultipartFile multipartFile,
+            @RequestPart("imageDetails") UploadImageDetailsDto imageDetails
+    ) {
+        UploadImageCommand command = new UploadImageCommand(multipartFile, imageDetails);
         UniqueId imageId = imageService.uploadImage(command);
         return ResponseEntity.ok(imageId);
     }

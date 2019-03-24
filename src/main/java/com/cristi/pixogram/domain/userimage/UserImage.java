@@ -23,17 +23,31 @@ public class UserImage extends BaseEntity<UserImage, UniqueId> {
     private EmailAddress username;
 
     @NotNull
+    private String imageTitle;
+
+    @NotNull
+    private String imageDescription;
+
+    @NotNull
     private LocalDateTime uploadedTime;
 
-    public UserImage(@NotEmpty String imagePath, @NotEmpty String imageThumbnailPath, @NotNull EmailAddress username) {
-        this(new UniqueId(), imagePath, imageThumbnailPath, username);
+    public UserImage(
+            @NotEmpty String imagePath, @NotEmpty String imageThumbnailPath, @NotNull EmailAddress username,
+            String imageTitle, String imageDescription
+    ) {
+        this(new UniqueId(), imagePath, imageThumbnailPath, username, imageTitle, imageDescription);
     }
 
-    public UserImage(@NotNull UniqueId id, @NotEmpty String imagePath, @NotEmpty String imageThumbnailPath, @NotNull EmailAddress username) {
+    public UserImage(
+            @NotNull UniqueId id, @NotEmpty String imagePath, @NotEmpty String imageThumbnailPath,
+            @NotNull EmailAddress username, String imageTitle, String imageDescription
+    ) {
         super(UserImage.class, id);
         this.imagePath = imagePath;
         this.imageThumbnailPath = imageThumbnailPath;
         this.username = username;
+        this.imageTitle = imageTitle;
+        this.imageDescription = imageDescription;
         this.uploadedTime = LocalDateTime.now();
         validate(this);
     }
