@@ -1,4 +1,4 @@
-package com.cristi.pixogram.domain.userimage;
+package com.cristi.pixogram.domain.userimage.upload;
 
 import com.cristi.pixogram.exposition.UploadImageDetailsDto;
 import lombok.AllArgsConstructor;

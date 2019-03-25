@@ -2,6 +2,10 @@ package com.cristi.pixogram.domain.userimage;
 
 import com.cristi.pixogram.domain.EmailAddress;
 import com.cristi.pixogram.domain.UniqueId;
+import com.cristi.pixogram.domain.userimage.upload.ImageValidator;
+import com.cristi.pixogram.domain.userimage.upload.ThumbnailGenerator;
+import com.cristi.pixogram.domain.userimage.upload.UploadImageCommand;
+import com.cristi.pixogram.domain.userimage.upload.UserImagePathProvider;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

@@ -5,6 +5,7 @@ import com.cristi.pixogram.domain.BaseEntity;
 import com.cristi.pixogram.domain.EmailAddress;
 import com.cristi.pixogram.domain.UniqueId;
 import lombok.Getter;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
@@ -23,9 +24,11 @@ public class UserImage extends BaseEntity<UserImage, UniqueId> {
     private EmailAddress username;
 
     @NotNull
+    @Length(max = 30)
     private String imageTitle;
 
     @NotNull
+    @Length(max = 500)
     private String imageDescription;
 
     @NotNull

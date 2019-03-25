@@ -1,4 +1,4 @@
-package com.cristi.pixogram.domain.userimage;
+package com.cristi.pixogram.domain.userimage.upload;
 
 import org.springframework.stereotype.Service;
 
