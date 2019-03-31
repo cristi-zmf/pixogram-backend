@@ -1,9 +1,10 @@
-package com.cristi.pixogram.exposition;
+package com.cristi.pixogram.exposition.userimage;
 
 import com.cristi.pixogram.domain.EmailAddress;
 import com.cristi.pixogram.domain.UniqueId;
 import com.cristi.pixogram.domain.userimage.*;
 import com.cristi.pixogram.domain.userimage.upload.UploadImageCommand;
+import com.cristi.pixogram.exposition.MentoolRequestMapping;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;

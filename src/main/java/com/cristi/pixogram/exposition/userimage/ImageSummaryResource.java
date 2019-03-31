@@ -1,7 +1,8 @@
-package com.cristi.pixogram.exposition;
+package com.cristi.pixogram.exposition.userimage;
 
 import com.cristi.pixogram.domain.UniqueId;
 import com.cristi.pixogram.domain.userimage.ImageSummaryResolver;
+import com.cristi.pixogram.exposition.MentoolRequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -16,7 +17,7 @@ public class ImageSummaryResource {
     }
 
     @GetMapping("/summaries/{imageId}")
-    public ImageSummaryDto getImageThumbnail(@PathVariable String imageId) throws FileNotFoundException {
+    public ImageSummaryDto getImageSummary(@PathVariable String imageId) throws FileNotFoundException {
         return imageSummaryResolver.resolveSummary(new UniqueId(imageId));
     }
 }

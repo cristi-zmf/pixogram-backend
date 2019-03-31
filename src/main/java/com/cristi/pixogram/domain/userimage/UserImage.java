@@ -4,6 +4,7 @@ package com.cristi.pixogram.domain.userimage;
 import com.cristi.pixogram.domain.BaseEntity;
 import com.cristi.pixogram.domain.EmailAddress;
 import com.cristi.pixogram.domain.UniqueId;
+import com.cristi.pixogram.domain.userimage.update.ImageIdentificationInfoUpdateCommand;
 import lombok.Getter;
 import org.hibernate.validator.constraints.Length;
 
@@ -58,5 +59,14 @@ public class UserImage extends BaseEntity<UserImage, UniqueId> {
     //USED BY JPA
     private UserImage() {
         super(UserImage.class, new UniqueId());
+    }
+
+    public UserImage updateIdentificationInfo(ImageIdentificationInfoUpdateCommand updateCommand) {
+        if (!username.equals(updateCommand.getOwner())) {
+            throw new IllegalArgumentException("Can not modify picture identification info. Not the owner of the picture.");
+        }
+        imageDescription = updateCommand.getDescription();
+        imageTitle = updateCommand.getTitle();
+        return this;
     }
 }

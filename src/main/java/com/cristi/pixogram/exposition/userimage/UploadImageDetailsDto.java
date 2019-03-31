@@ -1,4 +1,4 @@
-package com.cristi.pixogram.exposition;
+package com.cristi.pixogram.exposition.userimage;
 
 import com.cristi.pixogram.domain.EmailAddress;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -2,7 +2,7 @@ package com.cristi.pixogram.domain.userimage;
 
 import com.cristi.pixogram.domain.EmailAddress;
 import com.cristi.pixogram.domain.userimage.upload.UploadImageCommand;
-import com.cristi.pixogram.exposition.UploadImageDetailsDto;
+import com.cristi.pixogram.exposition.userimage.UploadImageDetailsDto;
 import com.cristi.pixogram.infra.persistence.IntegrationTestWithNoDataset;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

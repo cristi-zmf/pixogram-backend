@@ -1,5 +1,6 @@
 package com.cristi.pixogram.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Transient;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import static java.util.Objects.hash;
 
 public abstract class BaseValueObject<T extends BaseValueObject<T>> implements Validable<T> {
     @Transient
+    @JsonIgnore
     private final Class<T> type;
 
     protected BaseValueObject(Class<T> type) {

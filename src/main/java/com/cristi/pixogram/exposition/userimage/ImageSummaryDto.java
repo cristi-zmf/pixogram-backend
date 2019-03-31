@@ -1,4 +1,4 @@
-package com.cristi.pixogram.exposition;
+package com.cristi.pixogram.exposition.userimage;
 
 import com.cristi.pixogram.domain.EmailAddress;
 import com.cristi.pixogram.domain.UniqueId;
@@ -19,14 +19,16 @@ public class ImageSummaryDto {
     @JsonProperty public UniqueId id;
     @JsonProperty public String title;
     @JsonProperty public String description;
+    @JsonProperty public EmailAddress owner;
     @JsonProperty public Set<String> comments; //for now empty
     @JsonProperty public Set<EmailAddress> likes;//for now empty
     @JsonProperty public Set<EmailAddress> dislikes; //for now empty
 
+
     public static ImageSummaryDto fromUserImage(UserImage userImage) {
         return new ImageSummaryDto(
-                userImage.getId(), userImage.getImageTitle(),
-                userImage.getImageDescription(), emptySet(), emptySet(), emptySet()
+                userImage.getId(), userImage.getImageTitle(), userImage.getImageDescription(),
+                userImage.getUsername(), emptySet(), emptySet(), emptySet()
         );
     }
 }

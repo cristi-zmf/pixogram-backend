@@ -53,7 +53,7 @@ public class EmailAddress extends BaseValueObject<EmailAddress> implements Seria
         public void serialize(
                 EmailAddress emailAddress, JsonGenerator jsonGenerator, SerializerProvider serializerProvider
         ) throws IOException {
-            jsonGenerator.writeRawValue(emailAddress.getValue());
+            jsonGenerator.writeString(emailAddress.getValue());
         }
     }
 

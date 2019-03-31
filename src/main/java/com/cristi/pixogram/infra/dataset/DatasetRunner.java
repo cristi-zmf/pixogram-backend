@@ -8,11 +8,13 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
 
 @Component
 @Profile("DATASET")
+@Transactional
 public class DatasetRunner implements ApplicationRunner {
     private final ImageService imageService;
     private final DeleteAllFilesInImageRepo deleteAllFilesInImageRepo;
@@ -29,7 +31,7 @@ public class DatasetRunner implements ApplicationRunner {
         deleteAllFilesInImageRepo.deleteAllFoldersAndFilesInStorageLocation();
         ClassLoader classLoader = getClass().getClassLoader();
         File img = new File(classLoader.getResource("static/test_upload.jpg").getFile());
-        EmailAddress someUsername = new EmailAddress("john@john.com");
+        EmailAddress someUsername = UserJohn.USERNAME;
         imageService.uploadImageInternally(img, someUsername, "Cool image", "Cool description");
     }
 }

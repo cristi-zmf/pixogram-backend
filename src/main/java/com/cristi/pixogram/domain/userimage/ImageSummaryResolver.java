@@ -1,10 +1,10 @@
 package com.cristi.pixogram.domain.userimage;
 
 import com.cristi.pixogram.domain.UniqueId;
-import com.cristi.pixogram.exposition.ImageSummaryDto;
+import com.cristi.pixogram.exposition.userimage.ImageSummaryDto;
 import org.springframework.stereotype.Service;
 
-import static com.cristi.pixogram.exposition.ImageSummaryDto.fromUserImage;
+import static com.cristi.pixogram.exposition.userimage.ImageSummaryDto.fromUserImage;
 
 @Service
 public class ImageSummaryResolver {

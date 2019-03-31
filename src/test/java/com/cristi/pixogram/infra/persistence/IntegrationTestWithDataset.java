@@ -8,6 +8,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@Profile("DATASET")
+@ActiveProfiles("DATASET")
 public abstract class IntegrationTestWithDataset {
 }
