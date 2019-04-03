@@ -18,5 +18,5 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 @Retention(RetentionPolicy.RUNTIME)
 @RestController
 @Transactional
-public @interface MentoolRequestMapping {
+public @interface PixogramBaseRequestMapping {
 }

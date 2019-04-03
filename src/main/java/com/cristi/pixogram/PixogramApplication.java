@@ -9,9 +9,9 @@ import org.springframework.context.annotation.Import;
 @SpringBootApplication
 @EnableEurekaClient
 @Import(AppConfiguration.class)
-public class PxiogramApplication {
+public class PixogramApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(PxiogramApplication.class, args);
+		SpringApplication.run(PixogramApplication.class, args);
 	}
 
 }

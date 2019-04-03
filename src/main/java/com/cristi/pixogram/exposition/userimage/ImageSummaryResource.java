@@ -2,13 +2,13 @@ package com.cristi.pixogram.exposition.userimage;
 
 import com.cristi.pixogram.domain.UniqueId;
 import com.cristi.pixogram.domain.userimage.ImageSummaryResolver;
-import com.cristi.pixogram.exposition.MentoolRequestMapping;
+import com.cristi.pixogram.exposition.PixogramBaseRequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.io.FileNotFoundException;
 
-@MentoolRequestMapping
+@PixogramBaseRequestMapping
 public class ImageSummaryResource {
     private final ImageSummaryResolver imageSummaryResolver;
 

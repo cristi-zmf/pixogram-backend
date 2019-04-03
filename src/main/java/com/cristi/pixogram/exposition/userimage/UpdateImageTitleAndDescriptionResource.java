@@ -3,14 +3,14 @@ package com.cristi.pixogram.exposition.userimage;
 import com.cristi.pixogram.domain.UniqueId;
 import com.cristi.pixogram.domain.userimage.update.ImageIdentificationInfoUpdateCommand;
 import com.cristi.pixogram.domain.userimage.update.UpdateImageTitleAndDescription;
-import com.cristi.pixogram.exposition.MentoolRequestMapping;
+import com.cristi.pixogram.exposition.PixogramBaseRequestMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
 
-@MentoolRequestMapping
+@PixogramBaseRequestMapping
 public class UpdateImageTitleAndDescriptionResource {
     private final UpdateImageTitleAndDescription updateImageTitleAndDescription;
 

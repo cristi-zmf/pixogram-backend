@@ -4,7 +4,7 @@ import com.cristi.pixogram.domain.EmailAddress;
 import com.cristi.pixogram.domain.UniqueId;
 import com.cristi.pixogram.domain.userimage.*;
 import com.cristi.pixogram.domain.userimage.upload.UploadImageCommand;
-import com.cristi.pixogram.exposition.MentoolRequestMapping;
+import com.cristi.pixogram.exposition.PixogramBaseRequestMapping;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
@@ -20,7 +20,7 @@ import java.util.Set;
 
 import static java.util.stream.Collectors.toSet;
 
-@MentoolRequestMapping
+@PixogramBaseRequestMapping
 public class ImagesResource {
     private final UserImages userImages;
     private final ImageService imageService;
