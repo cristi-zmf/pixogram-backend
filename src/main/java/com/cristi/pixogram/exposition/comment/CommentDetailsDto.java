@@ -13,6 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class CommentDetailsDto {
     @JsonProperty public String id;
+    @JsonProperty public String value;
     @JsonProperty public String author;
     @JsonProperty public String imageId;
     @JsonProperty public Set<String> likes;

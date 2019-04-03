@@ -5,6 +5,7 @@ import com.cristi.pixogram.domain.EmailAddress;
 import com.cristi.pixogram.domain.UniqueId;
 import com.cristi.pixogram.exposition.comment.CommentDetailsDto;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -91,12 +92,17 @@ public class Comment extends BaseEntity<Comment, UniqueId> {
 
     public CommentDetailsDto toCommentDetailsDto() {
         return new CommentDetailsDto(
-                getId().getValue(), author.getValue(), imageId.getValue(), toRawEmailAddresses(getLikes()),
+                getId().getValue(), value, author.getValue(), imageId.getValue(), toRawEmailAddresses(getLikes()),
                 toRawEmailAddresses(getDisLikes()), lastModified
         );
     }
 
     private Set<String> toRawEmailAddresses(@NotNull Set<EmailAddress> addresses) {
         return addresses.stream().map(EmailAddress::getValue).collect(toSet());
+    }
+
+    //USED BY JPA
+    private Comment() {
+        super(Comment.class, new UniqueId());
     }
 }
