@@ -17,16 +17,18 @@ public class CommentResource {
     private final DeleteComment deleteComment;
     private final ListCommentsDescByLastModified listComments;
     private final LikeDislikeComment likeDislikeComment;
+    private final ConsultComment consultComment;
 
     public CommentResource(
             AddComment addComment, EditComment editComment, DeleteComment deleteComment,
-            ListCommentsDescByLastModified listComments, LikeDislikeComment likeDislikeComment
-    ) {
+            ListCommentsDescByLastModified listComments, LikeDislikeComment likeDislikeComment,
+            ConsultComment consultComment) {
         this.addComment = addComment;
         this.editComment = editComment;
         this.deleteComment = deleteComment;
         this.listComments = listComments;
         this.likeDislikeComment = likeDislikeComment;
+        this.consultComment = consultComment;
     }
 
 
@@ -55,8 +57,13 @@ public class CommentResource {
         return ok(likeDislikeComment.dislikeComment(dislikeCommand));
     }
 
-    @PutMapping("/{imageId}/list-comments")
+    @GetMapping("/{imageId}/list-comments")
     public List<CommentDetailsDto> listComments(@PathVariable String imageId) {
         return listComments.listCommentsByDateDescForImage(new UniqueId(imageId));
+    }
+
+    @GetMapping("/comments/{id}")
+    public CommentDetailsDto getComment(@PathVariable String id) {
+        return consultComment.consultComment(new UniqueId(id));
     }
 }
