@@ -26,10 +26,10 @@ public class UserImagePathProviderLocalIT {
     public void generatePathForNewFile() {
         EmailAddress username = new EmailAddress("test@test.com");
         String pathForNewFile = sut.generatePathForNewFile("test.jpeg", username);
-        File userFolder = new File(storage + "/" + "test.test.com");
+        File userFolder = new File(storage + File.separator + "test.test.com");
         assertThat(userFolder).exists();
         assertThat(userFolder).isDirectory();
-        assertThat(pathForNewFile).startsWith(userFolder + "/" + "test");
+        assertThat(pathForNewFile).startsWith(userFolder + File.separator + "test");
         if (!userFolder.delete()) {
          throw new IllegalStateException(
                  "Test folder can not be deleted after test ran. Try to delete it manually at: " + userFolder.getAbsolutePath()

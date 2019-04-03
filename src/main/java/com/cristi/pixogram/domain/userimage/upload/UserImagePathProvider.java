@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Service
 public class UserImagePathProvider {
+    private static final String PATH_SEPARATOR = File.separator;
     @Value("${files.location.storage}")
     private String storage;
 
@@ -16,10 +17,10 @@ public class UserImagePathProvider {
         String timestamp = getUploadedFileTimestamp();
         int indexOfLastDot = originalFilename.lastIndexOf(".");
         String normalizedFilename = normalizeFileName(originalFilename, timestamp, indexOfLastDot);
-        String userStorageFolder = storage + '/' + username.getValue().replace("@", ".");
+        String userStorageFolder = storage + PATH_SEPARATOR + username.getValue().replace("@", ".");
         File userFolder = new File(new File(userStorageFolder).getAbsolutePath());
         tryToCreateUserFolder(userFolder);
-        return userStorageFolder + '/' + normalizedFilename;
+        return userStorageFolder + PATH_SEPARATOR + normalizedFilename;
     }
 
     private String normalizeFileName(String originalFilename, String timestamp, int indexOfLastDot) {

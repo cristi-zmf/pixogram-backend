@@ -53,7 +53,7 @@ public class ImageServiceLocalIT extends IntegrationTestWithNoDataset {
 
     private File verifyImagesWereUploadedInUserFolder(UserImage savedImage) {
         String pathToSavedImage = savedImage.getImagePath();
-        String pathToUserFolder = pathToSavedImage.substring(0, pathToSavedImage.lastIndexOf("/"));
+        String pathToUserFolder = pathToSavedImage.substring(0, pathToSavedImage.lastIndexOf(File.separator));
         File userFolder = new File(pathToUserFolder);
         assertThat(userFolder).isDirectory();
         assertThat(userFolder).exists();
