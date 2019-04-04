@@ -28,7 +28,7 @@ public class ImageSummaryDto {
     public static ImageSummaryDto fromUserImage(UserImage userImage) {
         return new ImageSummaryDto(
                 userImage.getId(), userImage.getImageTitle(), userImage.getImageDescription(),
-                userImage.getUsername(), emptySet(), emptySet(), emptySet()
+                userImage.getUsername(), emptySet(), userImage.getLikes(), userImage.getDislikes()
         );
     }
 }

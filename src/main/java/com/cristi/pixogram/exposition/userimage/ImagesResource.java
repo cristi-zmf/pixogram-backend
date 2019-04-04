@@ -5,6 +5,7 @@ import com.cristi.pixogram.domain.UniqueId;
 import com.cristi.pixogram.domain.userimage.*;
 import com.cristi.pixogram.domain.userimage.upload.UploadImageCommand;
 import com.cristi.pixogram.exposition.PixogramBaseRequestMapping;
+import com.cristi.pixogram.exposition.comment.LikeDislikeCommandDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
@@ -19,15 +20,18 @@ import java.io.IOException;
 import java.util.Set;
 
 import static java.util.stream.Collectors.toSet;
+import static org.springframework.http.ResponseEntity.ok;
 
 @PixogramBaseRequestMapping
 public class ImagesResource {
     private final UserImages userImages;
     private final ImageService imageService;
+    private final LikeDislikeImage likeDislikeImage;
 
-    public ImagesResource(UserImages userImages, ImageService imageService) {
+    public ImagesResource(UserImages userImages, ImageService imageService, LikeDislikeImage likeDislikeImage) {
         this.userImages = userImages;
         this.imageService = imageService;
+        this.likeDislikeImage = likeDislikeImage;
     }
 
     @GetMapping("/{username}/images/id-titles")
@@ -38,11 +42,21 @@ public class ImagesResource {
         return imageIdTitles;
     }
 
+    @PutMapping("/like-image")
+    public ResponseEntity<UniqueId> likeImage(@RequestBody LikeDislikeCommandDto command) {
+        return ok(likeDislikeImage.likeImage(command));
+    }
+
+    @PutMapping("/dislike-image")
+    public ResponseEntity<UniqueId> dislikeImage(@RequestBody LikeDislikeCommandDto command) {
+        return ok(likeDislikeImage.dislikeImage(command));
+    }
+
     @GetMapping("/thumbnails/{imageId}")
     public ResponseEntity<InputStreamResource> getImageThumbnail(@PathVariable String imageId) throws FileNotFoundException {
         UserImage image = userImages.getOrThrow(new UniqueId(imageId));
         File imageFile = new File(image.getImageThumbnailPath());
-        return ResponseEntity.ok()
+        return ok()
                 .contentType(MediaType.IMAGE_JPEG)
                 .body(new InputStreamResource(new FileInputStream(imageFile)));
     }
@@ -51,7 +65,7 @@ public class ImagesResource {
     public ResponseEntity<InputStreamResource> getFullImage(@PathVariable String imageId) throws FileNotFoundException {
         UserImage image = userImages.getOrThrow(new UniqueId(imageId));
         File imageFile = new File(image.getImagePath());
-        return ResponseEntity.ok()
+        return ok()
                 .contentType(MediaType.IMAGE_JPEG)
                 .body(new InputStreamResource(new FileInputStream(imageFile)));
     }
@@ -65,6 +79,6 @@ public class ImagesResource {
         UploadImageDetailsDto imageDetails = objectMapper.readValue(imageDetailsMap, UploadImageDetailsDto.class);
         UploadImageCommand command = new UploadImageCommand(multipartFile, imageDetails);
         UniqueId imageId = imageService.uploadImage(command);
-        return ResponseEntity.ok(imageId);
+        return ok(imageId);
     }
 }

@@ -3,6 +3,7 @@ package com.cristi.pixogram.domain.userimage;
 
 import com.cristi.pixogram.domain.BaseEntity;
 import com.cristi.pixogram.domain.EmailAddress;
+import com.cristi.pixogram.domain.LikesDislikes;
 import com.cristi.pixogram.domain.UniqueId;
 import com.cristi.pixogram.domain.userimage.update.ImageIdentificationInfoUpdateCommand;
 import lombok.Getter;
@@ -12,8 +13,11 @@ import javax.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Set;
 
+import static java.util.Collections.emptySet;
 
+//TODO add last modified date (maybe for newsfeed)
 @Getter
 @Entity
 public class UserImage extends BaseEntity<UserImage, UniqueId> {
@@ -35,6 +39,9 @@ public class UserImage extends BaseEntity<UserImage, UniqueId> {
     @NotNull
     private LocalDateTime uploadedTime;
 
+    @NotNull
+    private LikesDislikes likesDislikes;
+
     public UserImage(
             @NotEmpty String imagePath, @NotEmpty String imageThumbnailPath, @NotNull EmailAddress username,
             String imageTitle, String imageDescription
@@ -53,6 +60,7 @@ public class UserImage extends BaseEntity<UserImage, UniqueId> {
         this.imageTitle = imageTitle;
         this.imageDescription = imageDescription;
         this.uploadedTime = LocalDateTime.now();
+        this.likesDislikes = new LikesDislikes(emptySet(), emptySet());
         validate(this);
     }
 
@@ -68,5 +76,21 @@ public class UserImage extends BaseEntity<UserImage, UniqueId> {
         imageDescription = updateCommand.getDescription();
         imageTitle = updateCommand.getTitle();
         return this;
+    }
+
+    public Set<EmailAddress> getLikes() {
+        return likesDislikes.getLikes();
+    }
+
+    public Set<EmailAddress> getDislikes() {
+        return likesDislikes.getDislikes();
+    }
+
+    public void like(EmailAddress address) {
+        likesDislikes.like(address);
+    }
+
+    public void dislike(EmailAddress address) {
+        likesDislikes.dislike(address);
     }
 }
