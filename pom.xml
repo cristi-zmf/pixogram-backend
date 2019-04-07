@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.cristi.pixogram</groupId>
-    <artifactId>mentool</artifactId>
+    <artifactId>pixogram-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Pixogram backend business module</name>
     <description>Pixogram backend microservice module</description>
