@@ -17,7 +17,7 @@ node {
          bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
       }
    }
-//
+
 //   stage('Integration tests') {
 //      if (isUnix()) {
 //         sh "'${mvnHome}/bin/mvn' test integration-test"
