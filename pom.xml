@@ -22,6 +22,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.cristi.pixogram.front</groupId>
+            <artifactId>pixogram-front</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <classifier>pixogram-front-library</classifier>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>

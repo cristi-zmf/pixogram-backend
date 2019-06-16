@@ -5,10 +5,10 @@ import com.cristi.pixogram.exposition.comment.CommentDetailsDto;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ConsultComment {
+public class ConsultCommentBack {
     private final Comments comments;
 
-    public ConsultComment(Comments comments) {
+    public ConsultCommentBack(Comments comments) {
         this.comments = comments;
     }
 

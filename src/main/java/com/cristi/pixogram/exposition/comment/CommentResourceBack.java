@@ -11,18 +11,18 @@ import java.util.List;
 import static org.springframework.http.ResponseEntity.ok;
 
 @PixogramBaseRequestMapping
-public class CommentResource {
+public class CommentResourceBack {
     private final AddComment addComment;
     private final EditComment editComment;
     private final DeleteComment deleteComment;
     private final ListCommentsDescByLastModified listComments;
     private final LikeDislikeComment likeDislikeComment;
-    private final ConsultComment consultComment;
+    private final ConsultCommentBack consultComment;
 
-    public CommentResource(
+    public CommentResourceBack(
             AddComment addComment, EditComment editComment, DeleteComment deleteComment,
             ListCommentsDescByLastModified listComments, LikeDislikeComment likeDislikeComment,
-            ConsultComment consultComment) {
+            ConsultCommentBack consultComment) {
         this.addComment = addComment;
         this.editComment = editComment;
         this.deleteComment = deleteComment;

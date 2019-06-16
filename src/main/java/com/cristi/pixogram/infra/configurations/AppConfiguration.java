@@ -10,8 +10,8 @@ import org.springframework.web.client.RestTemplate;
 public class AppConfiguration {
     static final String BASE_PACKAGES = "com.cristi.pixogram";
 
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
+//    @Bean
+//    public RestTemplate restTemplate() {
+//        return new RestTemplate();
+//    }
 }
