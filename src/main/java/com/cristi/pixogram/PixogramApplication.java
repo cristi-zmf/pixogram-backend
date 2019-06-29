@@ -8,7 +8,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
-@EnableEurekaClient
+//@EnableEurekaClient
 @Import(AppConfiguration.class)
 public class PixogramApplication {
 	@Value("${EUREKA_URI}")
